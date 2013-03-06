@@ -13,6 +13,11 @@ module.exports = function(grunt) {
 
       var errors = coffeelint.lint(grunt.file.read(file), options);
 
+      // Read CoffeeLint options from a specified coffeehintrc file.
+      if (options.coffeelintrc) {
+        options = grunt.file.readJSON(options.coffeelintrc);
+      }
+
       if (!errors.length) {
         grunt.verbose.ok();
       } else {
